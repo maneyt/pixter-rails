@@ -1,4 +1,11 @@
 <h2><%= @gallery.name %> </h2>
 <p> <%= @gallery.description %> </h2>
-<p><%= link_to "Edit this gallery", "/galleries/#{@gallery.id}/edit" %></p>
-<%= link_to "Delete gallery", "/galleries/#{@gallery.id}", method: :delete %>
+<% @gallery.images.each do |image| %>
+  <p> <%= image_tag(image.url) %>
+  <%= link_to "edit this image", [:edit, @gallery, image] %> 
+  <%= link_to "Delete this image", [@gallery, image], method: :delete %> </p>
+<% end %>
+<p><%= link_to "Edit this gallery", [:edit, @gallery] %></p>
+<%= link_to "Delete gallery", @gallery, method: :delete %>
+<%= link_to "Add an image to this gallery", [:new, @gallery, :image] %>
+

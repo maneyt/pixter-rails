@@ -13,7 +13,7 @@ class GalleriesController < ApplicationController
 
   def create
     gallery = Gallery.create(gallery_params)
-    redirect_to "/galleries/#{gallery.id}"
+    redirect_to gallery #"/galleries/#{gallery.id}"
   end
 
   def edit
@@ -23,7 +23,7 @@ class GalleriesController < ApplicationController
   def update
     gallery = Gallery.find(params[:id])
     gallery.update(gallery_params)
-    redirect_to "/galleries/#{gallery.id}"
+    redirect_to gallery #"/galleries/#{gallery.id}"
   end
 
   def destroy

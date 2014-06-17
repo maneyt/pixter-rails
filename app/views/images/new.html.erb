@@ -1,0 +1,11 @@
+<h3> Add an Image </h3>
+<%= form_for [@gallery, @image] do |form| %>
+  <div>
+    <%= form.label :url, "URL" %> 
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.submit "Add Image" %>
+  </div>
+<% end %>
