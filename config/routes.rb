@@ -13,4 +13,7 @@ Rails.application.routes.draw do
     resources :images, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  get "/sign_up", to: "users#new"
+  resources :users, only: [:create]
+
 end

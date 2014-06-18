@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "/", "/" %>
-  <h1>Pixtr </h1>
+<%= link_to "/", root_path %>
+<h1>Pixtr </h1>
+
+<%= link_to "sign up", sign_up_path %>
+
 <%= yield %>
 
 </body>

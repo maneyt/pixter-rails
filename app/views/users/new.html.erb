@@ -1,0 +1,25 @@
+<h3> Sign up </h3> 
+
+<%= form_for @user do |form| %>
+
+  <%= render "error_messages", target: @user %>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  
+  <div>
+    <%= form.submit "Submit signup" %>
+  </div>
+<% end %>
+
