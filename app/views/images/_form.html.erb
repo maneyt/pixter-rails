@@ -1,0 +1,11 @@
+<%= form_for [@gallery, @image] do |form| %>
+  <%= render "error_messages", target: @image %>
+  <div>
+    <%= form.label :url, "URL" %> 
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.submit "Submit Image" %>
+  </div>
+<% end %>

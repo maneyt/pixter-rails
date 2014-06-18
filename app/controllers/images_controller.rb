@@ -5,9 +5,13 @@ class ImagesController < ApplicationController
   end
 
   def create
-    image = Image.create(image_params)
-    gallery = Gallery.find(params[:gallery_id])
-    redirect_to gallery
+    @gallery = Gallery.find(params[:gallery_id])
+    @image = Image.new(image_params)
+    if @image.save
+      redirect_to @gallery
+    else
+      render :new
+    end
   end
 
   def edit
@@ -16,10 +20,13 @@ class ImagesController < ApplicationController
   end
 
   def update
-    gallery = Gallery.find(params[:gallery_id])
-    image = gallery.images.find(params[:id])
-    image.update(image_params)
-    redirect_to gallery 
+    @gallery = Gallery.find(params[:gallery_id])
+    @image = @gallery.images.find(params[:id])
+    if @image.update(image_params)
+      redirect_to @gallery 
+    else
+      render :edit
+    end
   end
 
   def destroy
