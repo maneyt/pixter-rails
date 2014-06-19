@@ -9,6 +9,14 @@
 <body>
 <%= link_to "/", "/" %>
   <h1>Pixtr </h1>
+
+<% if signed_in? %>
+  <%= button_to "SIGN OUT", :session, method: :delete %> 
+<% else %>
+  <%= link_to "Sign up", [:new, :user] %>
+  <%= link_to "Sign in", [:new, :session] %>
+<% end %>
+
 <%= yield %>
 
 </body>
