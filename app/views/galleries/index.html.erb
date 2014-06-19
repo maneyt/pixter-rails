@@ -1,6 +1,7 @@
 <h2> Galleries </h2>
-
-<%= link_to "Create a gallery", "/galleries/new" %>
+<% if signed_in? %>
+  <%= link_to "Create a gallery", "/galleries/new" %>
+<% end %>
 
 <ul>
   <% @galleries.each do |gallery| %>
