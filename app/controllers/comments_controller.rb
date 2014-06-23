@@ -1,16 +1,20 @@
 class CommentsController < ApplicationController
 
   def create
-    image = Image.find(params[:image_id])
-    additional_params = {user_id: current_user.id, image_id: image.id}
-    comment = image.comments.new(comment_params.merge(additional_params))
-    comment.save
-    redirect_to image
+    @image = Image.find(params[:image_id])
+    @comment = @image.comments.new(comment_params)
+
+    if @comment.save
+      redirect_to @image
+    else
+      @comments = @image.reload.comments
+      render "/images/show"
+    end 
   end
 
   private 
 
   def comment_params
-    params.require(:comment).permit(:text)
+    params.require(:comment).permit(:text).merge(user_id: current_user.id)
   end
 end
