@@ -5,7 +5,7 @@
 <% @gallery.images.each do |image| %>
 
   <%= link_to image do %>
-    <%= image_tag(image.url) %>
+    <div> <%= image_tag(image.url) %></div>
   <% end %>
 
   <% if current_user == @gallery.user %>

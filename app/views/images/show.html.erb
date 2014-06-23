@@ -1,2 +1,13 @@
 <p><%= link_to "back to gallery", @image.gallery %></p>
 <%= image_tag(@image.url) %>
+
+<%= form_for [@image, @comment] do |form| %>
+  <%= form.text_area :text %>
+  <%= form.submit "Post a comment" %>
+<% end %>
+
+<ul>
+  <% @image.comments.each do |comment| %</span>>
+    <li> <%= comment.text %> >>>>>>>>>>>>>> posted by: <span class="email"><%=comment.user.email %></span>-- <%= time_ago_in_words(comment.created_at) %> ago </li>
+  <% end %>
+</ul>

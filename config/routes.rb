@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :images, only: [:new, :create, :destroy]
   end
 
-  resources :images, only: [:edit, :update, :show]
+  resources :images, only: [:edit, :update, :show] do
+    resources :comments, only: [:create]
+  end
 
 end
