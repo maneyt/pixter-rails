@@ -11,6 +11,7 @@
   <h1>Pixtr </h1>
 
 <% if signed_in? %>
+  <p> Signed in as: <%= current_user.email %></p>
   <%= button_to "SIGN OUT", :session, method: :delete %> 
 <% else %>
   <% unless controller_name =="users" && action_name == "new" %>

@@ -1,13 +1,20 @@
 <h2><%= @gallery.name %> </h2>
 <p> <%= @gallery.description %> </p>
 <p>Owned by <%= @gallery.user.email %></p>
+
 <% @gallery.images.each do |image| %>
-  <p> <%= image_tag(image.url) %>
+
+  <%= link_to image do %>
+    <%= image_tag(image.url) %>
+  <% end %>
+
   <% if current_user == @gallery.user %>
     <%= link_to "edit this image", [:edit, image] %> 
     <%= link_to "Delete this image", [@gallery, image], method: :delete %> </p>
   <% end %>
+
 <% end %>
+
 <% if current_user == @gallery.user %>
   <p><%= link_to "Edit this gallery", [:edit, @gallery] %></p>
   <%= link_to "Delete gallery", @gallery, method: :delete %>
