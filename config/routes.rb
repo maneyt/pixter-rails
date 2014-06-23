@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root to:"galleries#index"  #to generate the regular index page
 
   resources :galleries, only: [:show, :new, :create, :edit, :update, :destroy] do
-    resources :images, only: [:new, :create, :edit, :update, :destroy]
+    resources :images, only: [:new, :create, :destroy]
   end
+
+  resources :images, only: [:edit, :update]
 
 end

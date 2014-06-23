@@ -1,2 +1,8 @@
 <h3> Add an Image </h3>
-<%= render "form" %>
+<%= form_for [@gallery, @image] do |form| %>
+  <%= render "error_messages", target: @image %>
+  <%= render "form", form: form %>
+  <div>
+    <%= form.submit "Create Image" %>
+  </div>
+<% end %>

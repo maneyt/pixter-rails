@@ -4,7 +4,7 @@
 <% @gallery.images.each do |image| %>
   <p> <%= image_tag(image.url) %>
   <% if current_user == @gallery.user %>
-    <%= link_to "edit this image", [:edit, @gallery, image] %> 
+    <%= link_to "edit this image", [:edit, image] %> 
     <%= link_to "Delete this image", [@gallery, image], method: :delete %> </p>
   <% end %>
 <% end %>

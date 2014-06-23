@@ -1,2 +1,9 @@
 <h3> Edit Image </h3>
-<%= render "form" %>
+<%= form_for @image do |form| %>
+  <%= render "error_messages", target: @image %>
+
+  <%= render "form", form: form %>
+  <div>
+    <%= form.submit "Update Image" %>
+  </div>
+<% end %>
