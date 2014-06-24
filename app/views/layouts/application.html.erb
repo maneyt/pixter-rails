@@ -13,6 +13,7 @@
 <% if signed_in? %>
   <p> Signed in as: <span class="email"><%= current_user.email %></span></p>
   <%= button_to "SIGN OUT", :session, method: :delete %> 
+  <%= link_to "Create a new group", [:new, :group] %>
 <% else %>
   <% unless controller_name =="users" && action_name == "new" %>
     <%= link_to "Sign up", [:new, :user] %>
