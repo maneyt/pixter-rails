@@ -1,0 +1,11 @@
+<h3> <%= render @group %> </h3>
+<h4> Users in this group </h4>
+<ul>
+  <% @group.users.each do |user| %>
+    <li> <%= user.email %> </li> 
+  <% end %>
+</ul>
+
+<% @group.images.each do |image| %>
+  <div><%= image_tag image.url %> </div>
+<% end %>

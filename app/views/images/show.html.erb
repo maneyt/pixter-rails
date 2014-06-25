@@ -1,6 +1,14 @@
 <p><%= link_to "back to gallery", @image.gallery %></p>
 <%= image_tag(@image.url) %>
 <%= render "error_messages", target: @comment %>
+
+<% if current_user == @image.gallery.user %>
+  <%= form_for @image do |form| %>
+   <%= form.collection_check_boxes :group_ids, @groups, :id, :name %> 
+    <%= form.submit "Select group(s)" %>
+  <% end %>
+<% end %>
+
 <%= form_for [@image, @comment] do |form| %>
   <%= form.text_area :text %>
   <%= form.submit "Post a comment" %>

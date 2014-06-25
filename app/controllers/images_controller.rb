@@ -17,6 +17,7 @@ class ImagesController < ApplicationController
   def show
     @image = Image.find(params[:id])
     @comment = Comment.new
+    @groups = Group.all
     @comments = @image.comments.recent
   end
 
@@ -26,7 +27,6 @@ class ImagesController < ApplicationController
 
   def update
     @image = current_user.images.find(params[:id])
-    
     if @image.update(image_params)
       redirect_to @image.gallery
     else
@@ -45,6 +45,6 @@ class ImagesController < ApplicationController
 
   def image_params
     params.
-      require(:image).permit(:url)
+      require(:image).permit(:url, group_ids: [])
   end
 end
