@@ -1,0 +1,29 @@
+<h3> User Dashboard </h3> 
+
+<h4> Your Galleries </h4> 
+<ul> 
+  <% current_user.galleries.each do |gallery| %>
+    <li> <%= link_to gallery.name, gallery %> </li>
+  <% end %>
+</ul>
+
+<h4> Your Groups </h4> 
+<ul>
+  <% current_user.groups.each do |group| %>
+    <li> <%= link_to group.name, group %> </li> 
+  <% end %>
+</ul>
+
+<h4> Your Liked Images</h4> 
+<ul>
+  <% current_user.liked_images.each do |image| %>
+    <%= link_to image_tag(image.url), image %>
+  <% end %>
+</ul>
+
+<h4> Your comments </h3>
+<ul>
+  <% current_user.comments.each do |comment| %>
+    <li> <%= link_to comment.text , comment.image %> </li>
+  <% end %>
+</ul>

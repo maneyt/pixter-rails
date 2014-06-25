@@ -1,0 +1,9 @@
+<h2> USERS </h2>
+<%  @users.each do |user| %>
+  <li> <%= user.email %> 
+  <% if user != current_user %>
+    <% if !current_user.followed?(user) %>
+      <%= button_to "Follow this user", [user, :follow] %> </li> 
+    <% end %>
+  <% end %>
+<% end %>

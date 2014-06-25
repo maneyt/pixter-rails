@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show, :index] do
+    resource :follow, only: [:create]
+  end
   resources :groups, only: [:new, :create, :index, :show] do
     resource :group_membership, only: [:create, :destroy]
   end
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :images, only: [:edit, :update, :show] do
-    resources :group_images, only: [:create]
+    resource :like, only: [:create, :destroy]
     resources :comments, only: [:create]
   end
 

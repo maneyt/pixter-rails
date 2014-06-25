@@ -12,6 +12,8 @@
 
 <% if signed_in? %>
   <p> Signed in as: <span class="email"><%= current_user.email %></span></p>
+  <p> <%= link_to "Dashboard", current_user %></p>
+  <p> <%= link_to "User Index", :users %> </p> 
   <%= button_to "SIGN OUT", :session, method: :delete %>
   <p><%= link_to "Create a new group", [:new, :group] %>
      |

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624195643) do
+ActiveRecord::Schema.define(version: 20140625203839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20140624195643) do
 
   add_index "comments", ["image_id"], name: "index_comments_on_image_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "follows", force: true do |t|
+    t.integer "user_id",     null: false
+    t.integer "followed_id", null: false
+  end
+
+  add_index "follows", ["user_id", "followed_id"], name: "index_follows_on_user_id_and_followed_id", unique: true, using: :btree
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
 
   create_table "galleries", force: true do |t|
     t.string   "name",        null: false
@@ -70,6 +78,17 @@ ActiveRecord::Schema.define(version: 20140624195643) do
   end
 
   add_index "images", ["gallery_id"], name: "index_images_on_gallery_id", using: :btree
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "image_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["image_id"], name: "index_likes_on_image_id", using: :btree
+  add_index "likes", ["user_id", "image_id"], name: "index_likes_on_user_id_and_image_id", unique: true, using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",           null: false
