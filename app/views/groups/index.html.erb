@@ -2,7 +2,7 @@
 <ul>
   <% @my_groups.each do |group| %>
     <li> <%= render group %> </li> 
-    <%= button_to "Leave this group", [group, GroupMembership.where(group_id: group.id, user_id: current_user.id).first], method: :delete %>
+    <%= button_to "Leave this group", [group, :group_membership], method: :delete %>
   <% end %>
 </ul>
 
@@ -12,9 +12,7 @@
     <% if !current_user.member?(group) %>
       <li> 
         <%= render group %> 
-          <%= form_for [group, @group_membership] do |form| %>
-          <%= form.submit "Join this group" %>
-        <% end %>
+        <%= button_to "Join this group", [group, :group_membership] %>
       </li>
     <% end %>
   <% end %>
