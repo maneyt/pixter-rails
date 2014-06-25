@@ -1,20 +1,10 @@
 <h4> Your groups </h4>
 <ul>
-  <% @my_groups.each do |group| %>
-    <li> <%= render group %> </li> 
-    <%= button_to "Leave this group", [group, :group_membership], method: :delete %>
-  <% end %>
+  <%= render @my_groups %>
 </ul>
 
-<h4> Other/joinable  groups </h4> 
+<h4> All joinable groups </h4> 
 <ul>
-  <% @groups.each do |group| %>
-    <% if !current_user.member?(group) %>
-      <li> 
-        <%= render group %> 
-        <%= button_to "Join this group", [group, :group_membership] %>
-      </li>
-    <% end %>
-  <% end %>
+  <%= render @groups - @my_groups %>
 </ul>
 

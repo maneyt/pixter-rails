@@ -9,6 +9,14 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
 
   def member?(group)
-    group_ids.include?(group.id)
+    groups.include?(group)
+  end
+  
+  def join(group)
+    groups << group
+  end
+
+  def leave(group)
+    groups.destroy(group)
   end
 end

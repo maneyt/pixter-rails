@@ -1,1 +1,9 @@
-<%= link_to group.name, group %> // <%= group.description %>
+<li>
+  <%= link_to group.name, group %> // <%= group.description %>
+
+  <% if current_user.member?(group) %>
+    <%= button_to "Leave this group", [group, :group_membership], method: :delete %>
+  <% else %>
+    <%= button_to "Join this group", [group, :group_membership] %>
+  <% end %>
+</li>
