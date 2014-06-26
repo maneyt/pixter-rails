@@ -1,3 +1,4 @@
+<p> <%= link_to "tag index", :tags %> </p>
 <h3> <%= @tag.name %> </h3>
 <% @tag.images.each do |image| %>
   <%= link_to image_tag(image.url), image %>

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :galleries, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :images, only: [:new, :create, :destroy]
   end
-  resources :tags, only: [:show]
+  resources :tags, only: [:index, :show]
 
   resources :images, only: [:edit, :update, :show] do
     resources :tags, only: [:create, :destroy]

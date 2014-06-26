@@ -1,22 +1,20 @@
 class TagsController < ApplicationController
-  def create #creates tag and image_tag 
+  def create
     image = Image.find(params[:image_id])
-    name_tags = tag_params[:name].split(",")
-    for tag_name in name_tags
-      tag = Tag.new(name: tag_name)
-      if tag.save #if the tag doesn't already exist
-        image.add_tag tag
-      else 
-        tag = Tag.where(name: tag_name).first #find the existing tag in the database
-        image.add_tag tag
-      end
+    tag_names = tag_params[:name].split(",")
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by(name: name)
+      image.add_tag tag
     end
-    
     redirect_to image
   end
 
   def show
     @tag = Tag.find(params[:id])
+  end
+
+  def index
+    @tags = Tag.all
   end
 
   def destroy
