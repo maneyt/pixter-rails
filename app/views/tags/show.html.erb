@@ -1,0 +1,7 @@
+<h3> <%= @tag.name %> </h3>
+<% @tag.images.each do |image| %>
+  <%= link_to image_tag(image.url), image %>
+  <% if current_user.images.include?(image) %>
+    <%= link_to "untag this image", [image, @tag], method: :delete %>
+  <% end %>
+<% end %>

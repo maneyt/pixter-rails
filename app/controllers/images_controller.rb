@@ -19,6 +19,8 @@ class ImagesController < ApplicationController
     @comment = Comment.new
     @groups = Group.all
     @comments = @image.comments.recent
+    @image_tag = ImageTag.new
+    @tag = Tag.new
   end
 
   def edit

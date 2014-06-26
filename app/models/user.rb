@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     liked_images << image
   end
 
-  def liked?(image)
+  def likes?(image)
     liked_images.include?(image)
   end
 
