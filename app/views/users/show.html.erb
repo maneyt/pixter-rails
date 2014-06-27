@@ -1,5 +1,5 @@
 <h3> User Dashboard </h3> 
-
+<%= image_tag current_user.avatar.url %>
 <h4> Your Galleries </h4> 
 <ul> 
   <% current_user.galleries.each do |gallery| %>

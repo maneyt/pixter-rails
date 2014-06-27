@@ -30,7 +30,7 @@ gem 'monban-generators'
 
 gem 'rails_12factor', group: :production
 
-gem "paperclip", "~> 4.1"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
