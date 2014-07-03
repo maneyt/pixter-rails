@@ -1,3 +1,3 @@
 class Like < ActiveRecord::Base
-  belongs_to :image
+  belongs_to :likeable, polymorphic: true
 end

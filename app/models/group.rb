@@ -5,6 +5,8 @@ class Group < ActiveRecord::Base
   has_many :group_images
   has_many :images, through: :group_images
 
+  has_many :likes, as: :likeable
+
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 

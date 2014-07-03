@@ -1,9 +1,9 @@
 <p><%= link_to "back to gallery", @image.gallery %></p>
 <%= image_tag(@image.url) %>
-< Likes: <%= @image.likes.count %>> 
+<p>< Likes: <%= @image.likes.count %>>  </p>
 
 <div>
-  <% if !current_user.likes?(@image) %> 
+  <% if !current_user.liked_images.include? @image %>
     <%= button_to "Like this image", [@image, :like] %>
   <% else %>
     <%= button_to "Unlike this image ", [@image, :like], method: :delete %>

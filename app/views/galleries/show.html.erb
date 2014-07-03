@@ -2,6 +2,13 @@
 <p> <%= @gallery.description %> </p>
 <p>Owned by <%= @gallery.user.email %></p>
 
+Likes: <%= @gallery.likes.count %>
+<% if !current_user.liked_galleries.include? @gallery %>
+  <%= button_to "Like this gallery", [@gallery, :like_gallery] %>
+<% else %>
+  <%= button_to "Unlike this gallery", [@gallery, :like_gallery], method: :delete %>
+<% end %>
+
 <% @gallery.images.each do |image| %>
 
   <%= link_to image do %>

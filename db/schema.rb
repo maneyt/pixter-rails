@@ -91,14 +91,13 @@ ActiveRecord::Schema.define(version: 20140627200432) do
   add_index "images", ["gallery_id"], name: "index_images_on_gallery_id", using: :btree
 
   create_table "likes", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "image_id",   null: false
+    t.integer  "user_id",       null: false
+    t.string   "likeable_type", null: false
+    t.integer  "likeable_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "likes", ["image_id"], name: "index_likes_on_image_id", using: :btree
-  add_index "likes", ["user_id", "image_id"], name: "index_likes_on_user_id_and_image_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "tags", force: true do |t|

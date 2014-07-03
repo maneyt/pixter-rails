@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   belongs_to :gallery
   has_many :comments
 
-  has_many :likes
+  has_many :likes, as: :likeable
 
   has_many :image_tags
   has_many :tags, through: :image_tags

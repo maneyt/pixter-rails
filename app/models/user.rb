@@ -10,14 +10,39 @@ class User < ActiveRecord::Base
 
   has_many :follows
 
-  has_many :likes
-  has_many :liked_images, through: :likes, source: :image
+  has_many :likes, as: :likeable
 
   has_many :comments
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
 
+  def liked_images
+    likes = Like.where(user_id: self.id, likeable_type: "Image")
+    imgs = []
+    likes.each do |like|
+      imgs << Image.where(id: like.likeable_id).first
+    end
+    imgs
+  end
+
+  def liked_groups
+    likes = Like.where(likeable_type: "Group", user_id: self.id)
+    groups = []
+    likes.each do |like|
+      groups << Group.where(id: like.likeable_id).first
+    end
+    groups
+  end
+
+  def liked_galleries
+    likes = Like.where(likeable_type: "Gallery", user_id: self.id)
+    galleries = []
+    likes.each do |like|
+      galleries << Gallery.where(id: like.likeable_id).first
+    end
+    galleries
+  end
 
   def member?(group)
     groups.include?(group)
@@ -31,9 +56,6 @@ class User < ActiveRecord::Base
     groups.destroy(group)
   end
 
-  def like(image)
-    liked_images << image
-  end
 
   def likes?(image)
     liked_images.include?(image)

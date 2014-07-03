@@ -1,4 +1,10 @@
 <h3> <%= render @group %> </h3>
+<p> Likes: <%= @group.likes.count %> </p>
+<% if !current_user.liked_groups.include?(@group) %>
+  <%= button_to "Like this group", [@group, :like_group] %>
+<% else %>
+  <%= button_to "Unlike this group", [@group, :like_group], method: :delete %>
+<% end %>
 <h4> Users in this group </h4>
 <ul>
   <% @group.users.each do |user| %>
